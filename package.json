@@ -1,0 +1,19 @@
+{
+  "name": "livraria-2022",
+  "version": "1.0.0",
+  "description": "Aula Impulso Tec",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.16"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index_ejs.js"
+  },
+  "author": "Roque Fernando",
+  "license": "ISC"
+}

@@ -1,0 +1,15 @@
+.card {
+    margin-top: 20px;
+}
+
+.card-text {
+    height: 70px;
+}
+
+.pagination {
+    margin-top: 10px;
+}
+
+small {
+    font-style: italic;
+}
