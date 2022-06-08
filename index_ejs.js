@@ -30,6 +30,16 @@ app.get("/",(req,res) => {
     })
 })
 
+app.get("/single-produto",(req,res) => {
+    res.render(`single-produto`, {
+        titulo:"Conheça nossos livros", 
+        promo:"Todos os livros com 10%OFF !",
+        livro: consulta,
+        galeria: consultaLivro,
+        carrinho: consultaCarrinho
+    })
+})
+
 app.get("/carrinho",(req,res) => {
     res.render(`carrinho`, {
         titulo:"Conheça nossos livros", 

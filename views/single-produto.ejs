@@ -37,9 +37,6 @@ Parte do curso Javascript Programmer
                 <li class="nav-item">
                     <a class="nav-link" href="/carrinho">Carrinho de compras</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/single-produto">Surpreenda-me</a>
-                </li>
             </ul>
             <div class="navbar-text">
                 Books Online
@@ -59,35 +56,20 @@ Parte do curso Javascript Programmer
                     <% } %>
             
         </header>
-
-        <div>
-            <h5>Confira outros Títulos</h5>
-            <ul>
-                <%livro.forEach((item,n)=> {
-                    if (n>0){
-                    %>
-                    <li><%=n%> - <%=item.titulo%> - <%=item.genero%> - <%=item.nome%></li>
-                <% }
-                })%>
-            </ul>
-
-        </div>
         <!-- =============== Produtos ================== -->
         <div class="row">
-            <!--Inicio da Iteração-->
-            <%galeria.forEach((item)=> { %>
-            <div class="livro col-md-16 col-sm-16 col-lg-3">
+            <!--Inicio da single-->
+            <div class="livro col-md-16 col-sm-16 col-lg-10">
                 <div class="card">
-                    <img class="card-img-top" src="books/<%=item.imagem%>" alt="Card image cap">
+                    <img class="card-img-top w-25" src="books/<%=galeria[1].imagem%>" alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title"><%=item.titulo%></h4>
-                        <p class="card-text"><%=item.resumo%></p>
-                        <h2>R$ <%=item.valor%></h2>
-                        <a href="carrinho/?id=<%=item.livros_id%>" class="btn btn-primary">Adicionar ao carrinho</a>
+                        <h4 class="card-title"><%=galeria[1].titulo%></h4>
+                        <p class="card-text"><%=galeria[1].resumo%></p>
+                        <h2>R$ <%=galeria[1].valor%></h2>
+                        <a href="carrinho/?id=<%=galeria[1].livros_id%>" class="btn btn-primary">Adicionar ao carrinho</a>
                     </div>
                 </div>
             </div>
-            <% }) %>
             <!--Fim do bloco da Iteração-->
 
         </div>

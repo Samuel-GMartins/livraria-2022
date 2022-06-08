@@ -14,6 +14,6 @@ img.onclick = function(){
 console.log(imgAll.length)
 
 for(i=0;i<imgAll.length;i++){
-    imgAll[i].style.opacity='.5'
-    
+    //imgAll[i].style.opacity='.5'
+
 }
