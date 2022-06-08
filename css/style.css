@@ -17,3 +17,7 @@ small {
 h4.card-title{
     color: rgb(75, 48, 194);
 }
+
+div.livro:nth-of-type(5) div.card h4 {
+    color: red;
+}

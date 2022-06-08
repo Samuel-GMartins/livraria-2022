@@ -29,11 +29,18 @@ async function selectLivros(){
     return rows
 }
 
+async function selectCarrinho(){
+    const conectado = await conecta()
+    const [rows] = await conectado.query("SELECT * FROM carrinho ORDER BY carrinho_id DESC")
+    //console.log(rows)
+    return rows
+}
+
 //selectFilmes()
 //selectLivros()
 
 
-module.exports = {selectFilmes,selectLivros}
+module.exports = {selectFilmes,selectLivros,selectCarrinho}
 
 
 

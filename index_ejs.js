@@ -15,6 +15,7 @@ app.use("/js",express.static('js'))
 
 const consulta = await db.selectFilmes()
 const consultaLivro = await db.selectLivros()
+const consultaCarrinho = await db.selectCarrinho()
 
 console.log(consulta[0])
 console.log(consultaLivro[0])
@@ -29,6 +30,15 @@ app.get("/",(req,res) => {
     })
 })
 
+app.get("/carrinho",(req,res) => {
+    res.render(`carrinho`, {
+        titulo:"Conheça nossos livros", 
+        promo:"Todos os livros com 10%OFF !",
+        livro: consulta,
+        galeria: consultaLivro,
+        carrinho: consultaCarrinho
+    })
+})
 
 app.listen(port,() => console.log(`Servidor Rodando na porta ${port} com nodemon!`))
 })()
