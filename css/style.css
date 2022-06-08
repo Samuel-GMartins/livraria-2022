@@ -13,3 +13,7 @@
 small {
     font-style: italic;
 }
+
+h4.card-title{
+    color: rgb(75, 48, 194);
+}

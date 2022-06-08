@@ -56,6 +56,7 @@ Parte do curso Javascript Programmer
                     <% } %>
             
         </header>
+
         <div>
             <h5>Confira outros Títulos</h5>
             <ul>
@@ -70,138 +71,22 @@ Parte do curso Javascript Programmer
         </div>
         <!-- =============== Produtos ================== -->
         <div class="row">
+            <!--Inicio da Iteração-->
+            <%galeria.forEach((item)=> { %>
             <div class="col-md-16 col-sm-16 col-lg-3">
                 <div class="card">
-                    <img class="card-img-top" src="books/aislyn.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="books/<%=item.imagem%>" alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title">Ayslin</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, autem?</p>
-                        <h2>R$ 83,50</h2>
-                        <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
+                        <h4 class="card-title"><%=item.titulo%></h4>
+                        <p class="card-text"><%=item.resumo%></p>
+                        <h2>R$ <%=item.valor%></h2>
+                        <a href="carrinho/?id=<%=item.livros_id%>" class="btn btn-primary">Adicionar ao carrinho</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-16 col-sm-16 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="books/oscar-wilde.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Oscar Wilde</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, laboriosam.</p>
-                        <h2>R$ 39,28</h2>
-                        <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-16 col-sm-16 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="books/secret-learning.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">The Secret Things</h4>
-                        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil, modi.</p>
-                        <h2> R$ 33,40</h2>
-                        <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-16 col-sm-16 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="books/happy-man.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">The Happiest Man</h4>
-                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae, reprehenderit!</p>
-                        <h2> R$ 13,10</h2>
-                        <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-16 col-sm-16 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="books/pitch-power.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Monsieur Prousts</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, illo.</p>
-                        <h2>R$212,40</h2>
-                        <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-16 col-sm-16 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="books/hacker.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title"?>Astra Hacker</h4>
-                        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, nesciunt.</p>
-                        <h2>R$120,50</h2>
-                        <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-16 col-sm-16 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="books/toronto.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">The Toronto Book of Love</h4>
-                        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, et?</p>
-                        <h2>R$45,00</h2>
-                        <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-16 col-sm-16 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="books/linda-flor.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Linda Flor da Madrugada</h4>
-                        <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, suscipit!</p>
-                        <h2>R$98,00</h2>
-                        <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-16 col-sm-16 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="books/liner.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Women Travellers</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, reprehenderit?</p>
-                        <h2>R$96,30</h2>
-                        <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-16 col-sm-16 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="books/all-i-need.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">All I Need</h4>
-                        <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia, est.</p>
-                        <h2>R$29,30</h2>
-                        <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-16 col-sm-16 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="books/secret-learning.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">The Secret Teachings of All Age</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis, neque.</p>
-                        <h2>R$62,00</h2>
-                        <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-16 col-sm-16 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="books/shadow.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Walking in The Shadow</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, sequi!</p>
-                        <h2>R$52,00</h2>
-                        <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
-                    </div>
-                </div>
-            </div>
+            <% }) %>
+            <!--Fim do bloco da Iteração-->
+
         </div>
         <!-- =============== Fim dos Produtos ================== -->
 

@@ -22,6 +22,18 @@ async function selectFilmes(){
     return rows
 }
 
-//selectFilmes()
+async function selectLivros(){
+    const conectado = await conecta()
+    const [rows] = await conectado.query("SELECT * FROM livros ORDER BY livros_id DESC")
+    //console.log(rows)
+    return rows
+}
 
-module.exports = {selectFilmes}
+//selectFilmes()
+//selectLivros()
+
+
+module.exports = {selectFilmes,selectLivros}
+
+
+
