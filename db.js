@@ -29,6 +29,23 @@ async function selectLivros(){
     return rows
 }
 
+async function selectSingle(id){
+    const conectado = await conecta()
+    const values = [id]
+    const [rows] = await conectado.query("SELECT * FROM livros WHERE livros_id=?",values)
+    //console.log(rows)
+    return rows
+}
+
+async function insertLivro(livro,){
+    const conectado = await conecta()
+    const values = [livro.titulo,livro.resumo,livro.valor,livro.imagem]
+    const [rows] = 
+    await conectado.query("INSERT INTO livros(titulo,resumo,valor,imagem) VALUES (?,?,?,?)",values)
+    console.log("Insert OK")
+    return rows
+}
+
 async function selectCarrinho(){
     const conectado = await conecta()
     const [rows] = await conectado.query("SELECT * FROM carrinho ORDER BY carrinho_id DESC")
@@ -38,9 +55,12 @@ async function selectCarrinho(){
 
 //selectFilmes()
 //selectLivros()
+//selectSingle(10)
+// insertLivro({titulo:"Wild Fury", resumo:"Lorem Resumo Wild Fire",valor:40.35,imagem:"wild-fury.jpg"})
 
 
-module.exports = {selectFilmes,selectLivros,selectCarrinho}
+
+module.exports = {selectFilmes,selectLivros,selectSingle,selectCarrinho}
 
 
 

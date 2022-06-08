@@ -2,6 +2,8 @@
 const express = require('express')
 const app = express()
 const db = require("./db.js")
+const url = require("url")
+
 const port = 8080
 
 app.set('view engine','ejs')
@@ -15,10 +17,11 @@ app.use("/js",express.static('js'))
 
 const consulta = await db.selectFilmes()
 const consultaLivro = await db.selectLivros()
+
 const consultaCarrinho = await db.selectCarrinho()
 
-console.log(consulta[0])
-console.log(consultaLivro[0])
+//console.log(consulta[0])
+//console.log(consultaLivro[0])
 
 
 app.get("/",(req,res) => {
@@ -30,14 +33,21 @@ app.get("/",(req,res) => {
     })
 })
 
-app.get("/single-produto",(req,res) => {
+app.get("/single-produto",async(req,res) => {
+    let infoUrl = req.url
+    let urlProp = url.parse(infoUrl,true) // ?id=5
+    let q = urlProp.query
+    const consultaSingle = await db.selectSingle(q.id)
+    const consultaInit = await db.selectSingle(4)
+
+
     res.render(`single-produto`, {
         titulo:"Conheça nossos livros", 
         promo:"Todos os livros com 10%OFF !",
         livro: consulta,
-        galeria: consultaLivro,
-        carrinho: consultaCarrinho
-    })
+        galeria: consultaSingle,
+        inicio: consultaInit
+        })
 })
 
 app.get("/carrinho",(req,res) => {
