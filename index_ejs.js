@@ -14,7 +14,6 @@ app.use("/imgs",express.static('imgs'))
 app.use("/css",express.static('css'))
 app.use("/js",express.static('js'))
 
-
 const consulta = await db.selectFilmes()
 const consultaLivro = await db.selectLivros()
 
@@ -33,6 +32,37 @@ app.get("/",(req,res) => {
     })
 })
 
+app.get("/upd-promo",(req,res) => {
+    res.render(`admin/atualiza-promocoes`, {
+        titulo:"Conheça nossos livros", 
+        promo:"Todos os livros com 10%OFF !",
+        livro: consulta,
+        galeria: consultaLivro
+    })
+})
+
+app.get("/insere-livro",async(req,res) =>{
+   await db.insertLivro({titulo:"Guerra Dos Mundos", resumo:"Lorem loren",valor:20.45,imagem:"guerra-dos-mundos.jpg"})
+    res.send("<h2>livro Adicionado!</h2> <a href='./'>Voltar</a>")
+})
+
+app.get("/atualiza-promo",async(req,res) =>{
+    let qs = url.parse(req.url,true).query
+    await db.updatePromo(qs.promo,qs.id) //localhost:8080/atualiza-promo?promo=1&id=8
+     res.send("<h2>Lista de Promoções Atualizadas!</h2> <a href='./'>Voltar</a>")
+ })
+
+app.get("/promocoes",async (req,res) => {
+    const consultaPromo = await db.selectPromo()
+    res.render(`promocoes`, {
+        titulo:"Conheça nossos livros", 
+        promo:"Todos os livros com 10%OFF !",
+        livro: consulta,
+        galeria: consultaPromo
+    })
+})
+
+
 app.get("/single-produto",async(req,res) => {
     let infoUrl = req.url
     let urlProp = url.parse(infoUrl,true) // ?id=5
@@ -47,6 +77,22 @@ app.get("/single-produto",async(req,res) => {
         livro: consulta,
         galeria: consultaSingle,
         inicio: consultaInit
+        })
+})
+
+app.get("/cadastro",async(req,res) => {
+    let infoUrl = req.url
+    let urlProp = url.parse(infoUrl,true) // ?id=5
+    let q = urlProp.query
+    const consultaSingle = await db.selectSingle(q.id)
+    const consultaInit = await db.selectSingle(4)
+
+
+    res.render(`cadastro`, {
+        titulo:"Conheça nossos livros", 
+        promo:"Todos os livros com 10%OFF !",
+        livro: consulta,
+        galeria: consultaInit
         })
 })
 

@@ -56,25 +56,9 @@ Parte do curso Javascript Programmer
         <header>
             <h1>Books Online
                 <small>Market Place de Livros</small></h1>
-                <h3 class="font-weight-bold"><%=promo%></h3>
-                <% if(promo){ %>
-                    <p>Compre agora o novo livro <b><%=livro[0].titulo%></b></p>
-                    <% } %>
+                <h3 class="font-weight-bold">Aproveite nossas promoções</h3>
             
         </header>
-
-        <div>
-            <h5>Confira outros Títulos</h5>
-            <ul>
-                <%livro.forEach((item,n)=> {
-                    if (n>0){
-                    %>
-                    <li><%=n%> - <%=item.titulo%> - <%=item.genero%> - <%=item.nome%></li>
-                <% }
-                })%>
-            </ul>
-
-        </div>
         <!-- =============== Produtos ================== -->
         <div class="row">
             <!--Inicio da Iteração-->

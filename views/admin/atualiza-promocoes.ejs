@@ -37,12 +37,6 @@ Parte do curso Javascript Programmer
                 <li class="nav-item">
                     <a class="nav-link" href="/carrinho">Carrinho de compras</a>
                 </li>
-                <li class="nav-item">
-                    <%
-                    arr = [1,5,6,7,8,9,10]
-                    n=parseInt(Math.random()* arr.length) %>
-                    <a class="nav-link" href="/single-produto?id=<%=arr[n]%>">Surpreenda-me</a>
-                </li>
             </ul>
             <div class="navbar-text">
                 Books Online
@@ -63,40 +57,28 @@ Parte do curso Javascript Programmer
             
         </header>
 
-        <div>
-            <h5>Confira outros Títulos</h5>
-            <ul>
-                <%livro.forEach((item,n)=> {
-                    if (n>0){
-                    %>
-                    <li><%=n%> - <%=item.titulo%> - <%=item.genero%> - <%=item.nome%></li>
-                <% }
-                })%>
-            </ul>
+        <!--Form Contato -->
+        <h2 class="alert alert-info">Atualizar Promoções</h2>
+        <form action="./atualiza-promo" method="get" class="mt-5 mb-5">
 
-        </div>
-        <!-- =============== Produtos ================== -->
-        <div class="row">
-            <!--Inicio da Iteração-->
-            <%galeria.forEach((item)=> { %>
-            <div class="livro col-md-16 col-sm-16 col-lg-3">
-                <div class="card">
-                    <a href="/single-produto?id=<%=item.livros_id%>">
-                    <img class="card-img-top" src="books/<%=item.imagem%>" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                        <h4 class="card-title"><%=item.titulo%></h4>
-                        <p class="card-text"><%=item.resumo%></p>
-                        <h2>R$ <%=item.valor%></h2>
-                        <a href="carrinho/?id=<%=item.livros_id%>" class="btn btn-primary">Adicionar ao carrinho</a>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label for="promo">Adicionar a Lista de Promoções?</label>
+              <input type="radio" class="col-lg-1" value="1" id="promo_sim" name="promo">Sim
+              <input type="radio" class="col-lg-1" value="0" id="promo_nao" name="promo">Não
             </div>
-            <% }) %>
-            <!--Fim do bloco da Iteração-->
 
-        </div>
-        <!-- =============== Fim dos Produtos ================== -->
+            <div class="form-group">
+                <label for="livro">Livro: </label>
+                <select name="id">
+                    <%galeria.forEach((item) =>{ %>
+                    <option value="<%=item.livros_id%>"><%=item.titulo%></option>
+                <% }) %>
+                </select>
+              </div>
+
+            <button type="submit" class="btn btn-primary">Confirmar</button>
+          </form>
+
 
         <!-- =============== Paginação ================== -->
         <nav>
@@ -133,6 +115,5 @@ Parte do curso Javascript Programmer
    <p class="pl-5 pb-5">&copy;2034 - Todos os direitos reservados</p>
 </footer>
 </body>
-<script src="js/controle.js"></script>
 </html>
 <!-- =============== Fim FOOTER ================== -->

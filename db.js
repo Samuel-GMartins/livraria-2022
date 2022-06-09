@@ -37,7 +37,21 @@ async function selectSingle(id){
     return rows
 }
 
-async function insertLivro(livro,){
+async function selectPromo(){
+    const conectado = await conecta()
+    const [rows] = await conectado.query("SELECT * FROM livros WHERE promo=1")
+    //console.log(rows)
+    return rows
+}
+async function updatePromo(promo,id){
+    const conectado = await conecta()
+    const values = [promo,id]
+    return await conectado.query("UPDATE livros SET promo=? WHERE livros_id=?",values)
+}
+
+//updatePromo(1,3)
+
+async function insertLivro(livro){
     const conectado = await conecta()
     const values = [livro.titulo,livro.resumo,livro.valor,livro.imagem]
     const [rows] = 
@@ -60,7 +74,15 @@ async function selectCarrinho(){
 
 
 
-module.exports = {selectFilmes,selectLivros,selectSingle,selectCarrinho}
+module.exports = {
+    selectFilmes,
+    selectLivros,
+    selectSingle,
+    selectCarrinho,
+    selectPromo,
+    insertLivro,
+    updatePromo
+}
 
 
 
