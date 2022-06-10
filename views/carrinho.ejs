@@ -1,51 +1,6 @@
-<!--
-Projeto Livraria Online
-Parte do curso Javascript Programmer    
--->
-<!-- ============= HEADER ================ -->
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="author" content="Leonardo Tumadjian">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <title>Books Online</title>
-</head>
-<body>
-<!-- ========= FIM HEADER ============= -->
-    <!-- ======= MENU DO PROJETO ======== -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">
-            <img src="imgs/logo.png" width="180" height="" class="d-inline-block align-top">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<%- include("header.ejs") %>
+<%- include("nav.ejs") %>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cadastro">Cadastre-se</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="carrinho">Carrinho de compras</a>
-                </li>
-            </ul>
-            <div class="navbar-text">
-                Books Online
-            </div>
-        </div>
-    </nav>
-    <!-- =============== FIM DO MENU =============== -->
-    
     <!-- =============== Conteúdo ================== -->
     <div class="container mt-5 pt-5">
         <header>
@@ -90,9 +45,8 @@ Parte do curso Javascript Programmer
     <!-- =============== Fim do Conteúdo ================== -->
 
 <!-- =============== FOOTER ================== -->
-<footer class="bg-dark mt-5 pt-5 text-left text-white">
-   <p class="pl-5 pb-5">&copy;2034 - Todos os direitos reservados</p>
-</footer>
+<%- include("footer.ejs") %>
+
     <script src="js/jquery-3.2.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

@@ -1,5 +1,6 @@
 <%- include("header.ejs") %>
 <%- include("nav.ejs") %>
+
     <!-- =============== Conteúdo ================== -->
     <div class="container mt-5 pt-5">
         <header>
@@ -11,6 +12,29 @@
                     <% } %>
             
         </header>
+
+        <!--Form Contato -->
+        <h2 class="alert alert-info">Envie sua mensagem</h2>
+        <form action="" method="POST" class="mt-5 mb-5">
+            <div class="form-group">
+              <label for="cad_nome">Nome</label>
+              <input type="text" class="form-control col-lg-9" id="cad_nome" placeholder="Seu nome aqui" name="cad_nome">
+            </div>
+            <div class="form-group">
+              <label for="cad_sobrenome">Sobrenome</label>
+              <input type="text" class="form-control col-lg-9" id="cad_sobrenome" placeholder="Seu sobrenome aqui" name="cad_sobrenome">
+            </div>
+            <div class="form-group">
+              <label for="cad_email">Email</label>
+              <input type="email" class="form-control col-lg-9" id="cad_email"  name="cad_email" placeholder="Seu email aqui">
+            </div>        
+            <div class="form-group">
+              <label for="cad_mensagem">Mensagem</label>
+              <textarea name="cad_mensagem" class="form-control col-lg-9"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Confirmar</button>
+          </form>
+
         <!-- =============== Produtos ================== -->
         <div class="row">
             <!--Inicio da single-->

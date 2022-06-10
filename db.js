@@ -60,6 +60,30 @@ async function insertLivro(livro){
     return rows
 }
 
+async function insertContato(contato){
+    const conectado = await conecta()
+    const values = [contato.nome,contato.sobrenome,contato.email,contato.mensagem]
+    const [rows] = 
+    await conectado.query("INSERT INTO contato(nome,sobrenome,email,mensagem) VALUES (?,?,?,?)",values)
+    console.log("Insert OK")
+    return rows
+}
+
+async function cadastroContato(usuarios){
+    const conectado = await conecta()
+    const values = [usuarios.nome,usuarios.email,usuarios.telefone,usuarios.senha,usuarios.conf_senha]
+    const [rows] = 
+    await conectado.query("INSERT INTO usuarios(nome,email,telefone,senha,conf_senha) VALUES (?,?,?,?,?)",values)
+    console.log("Insert OK")
+    return rows
+}
+// insertContato({
+//     nome:"Michael",
+//     sobrenome:"Jackson",
+//     email:"maiquin@gmail.com",
+//     mensagem:"hi hii"
+// })
+
 async function selectCarrinho(){
     const conectado = await conecta()
     const [rows] = await conectado.query("SELECT * FROM carrinho ORDER BY carrinho_id DESC")
@@ -81,7 +105,9 @@ module.exports = {
     selectCarrinho,
     selectPromo,
     insertLivro,
-    updatePromo
+    updatePromo,
+    insertContato,
+    cadastroContato
 }
 
 
