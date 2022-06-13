@@ -43,13 +43,19 @@ async function selectPromo(){
     //console.log(rows)
     return rows
 }
-async function updatePromo(promo,id){
+
+async function updatePromo(id){
     const conectado = await conecta()
     const values = [promo,id]
     return await conectado.query("UPDATE livros SET promo=? WHERE livros_id=?",values)
 }
-
 //updatePromo(1,3)
+
+async function deleteCarrinho(id){
+    const conectado = await conecta()
+    const values = [id]
+    return await conectado.query("DELETE FROM carrinho WHERE carrinho_id=?",values)
+}
 
 async function insertLivro(livro){
     const conectado = await conecta()
@@ -117,7 +123,8 @@ module.exports = {
     updatePromo,
     insertContato,
     cadastroContato,
-    insertCarrinho
+    insertCarrinho,
+    deleteCarrinho
 }
 
 

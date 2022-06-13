@@ -21,14 +21,17 @@
                         <div class="col-sm-6 col-lg-2"></div>
                     </div>
                     <div class="row">
-                        <%carrinho.forEach((item)=> { %>
+                        <%
+                        total = 0
+                        carrinho.forEach((item)=> {
+                        total += parseFloat(item.valor)
+                        %>
                         <div class="col-sm-6 col-lg-4"><%=item.produto%></div>
                         <div class="col-sm-6 col-lg-2"><%=item.quantidade%></div>
                         <div class="col-sm-6 col-lg-3">R$ <%=item.valor%></div>
-                        <div class="col-sm-6 col-lg-2">Excluir</div>
+                        <div class="col-sm-6 col-lg-2"><button class="btn btn-warning bt-carrinho mb-5" data-id="<%=item.carrinho_id%>">Excluir</button></div>
                         <% }) %>
                     </div>
-
 
                 </div>
             </div>
@@ -38,6 +41,7 @@
         <!-- =============== Fim do Cadastro ================== -->
         <div class="card col-sm-2 col-lg-2">
             <h4>Resumo</h4>
+            <div class="text">Total: <%=total.toFixed(2)%></div>
         </div>
 
     </div>
@@ -46,10 +50,22 @@
 <script>
     $().ready(function () {
         console.log('footer.ejs')
+        $('.bt-carrinho').click(function () {
+
+            let dataid = $(this).attr('data-id')
+
+            $.post("/delete-carrinho", {
+                    id: dataid
+                },
+                function (data, status) {
+                    location.href = '/carrinho'
+                }, 'json')
+        })
     })
 </script>
 
 <!-- =============== FOOTER ================== -->
 <%- include("footer.ejs") %>
+
 </html>
 <!-- =============== Fim FOOTER ================== -->

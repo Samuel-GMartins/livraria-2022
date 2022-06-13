@@ -147,15 +147,22 @@ app.get("/carrinho", async(req,res) => {
 })
 
 app.post("/carrinho",async(req,res)=> {
-    const info = req.body
+    const info =req.body
     await db.insertCarrinho({
         produto: info.produto,
         quantidade: info.quantidade,
         valor: info.valor,
         livros_id: info.livros_id
     })
-    //res.redirect("/carrinho")
+    res.send(req.body)
 })
+
+app.post("/delete-carrinho",async(req,res)=> {
+    const info =req.body
+    await db.deleteCarrinho(info.id)
+    res.send(info)
+})
+
 
 app.listen(port,() => console.log(`Servidor Rodando na porta ${port} com nodemon!`))
 })()

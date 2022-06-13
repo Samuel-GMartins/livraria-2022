@@ -27,9 +27,6 @@
     </div>
     <!-- =============== Produtos ================== -->
     <div class="row">
-        <form action="/carrinho" id="form-carrinho">
-            
-        </form>
         <!--Inicio da Iteração-->
         <%galeria.forEach((item)=> { %>
         <div class="livro col-md-16 col-sm-16 col-lg-3">
@@ -103,7 +100,8 @@
                 valor: dataValor
             },
             function(data,status){
-                //location.href='/carrinho'
+
+                location.href='/carrinho'
             },'json')
         })
     })
