@@ -1,0 +1,53 @@
+<%- include("header.ejs") %>
+<%- include("nav.ejs") %>
+<!-- =============== FIM DO MENU =============== -->
+
+<!-- =============== Conteúdo ================== -->
+<div class="container mt-5 pt-5">
+    <header>
+        <h1>Books Online
+            <small>Market Place de Livros </small>
+        </h1>
+    </header>
+    <!-- =============== Cadastro ================== -->
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <form action="" method="post" class="form mt-5" >
+                        <fieldset>
+                            <legend>Faça seu Login</legend>
+                            <ul class="list-unstyled mt-3">
+                                <li>
+                                    <label>Email:</label>
+                                    <input type="email" class="form-control" name="email" id="nome_login" required>
+                                </li>
+                                <li>
+                                    <label>Senha:</label>
+                                    <input type="password" class="form-control" name="senha" id="email_login" required>
+                                </li>
+                                <li>
+                                    <button class="btn btn-info mt-5">Confirmar</button>
+                                </li>
+                            </ul>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- =============== Fim do Cadastro ================== -->
+
+
+    </div>
+</div>
+<!-- =============== Fim do Conteúdo ================== -->
+
+<!-- =============== FOOTER ================== -->
+<%- include("footer.ejs") %>
+
+</body>
+
+</html>
+<!-- =============== Fim FOOTER ================== -->
