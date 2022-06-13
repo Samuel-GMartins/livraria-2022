@@ -38,7 +38,7 @@
                     <h4 class="card-title"><%=item.titulo%></h4>
                     <p class="card-text"><%=item.resumo%></p>
                     <h2>R$ <%=item.valor%></h2>
-                    <a href="carrinho/?id=<%=item.livros_id%>" class="btn btn-primary">Adicionar ao carrinho</a>
+                    <button data-id="<%=item.livros_id%>" class="btn btn-primary bt-carrinho">Adicionar ao carrinho</button>
                 </div>
             </div>
         </div>
@@ -83,6 +83,21 @@
 
 </body>
 <script src="js/controle.js"></script>
+
+<script>
+    $().ready(function () {
+        console.log('footer.ejs')
+        $('.bt-carrinho').click(function(){
+            let dataid =$(this).attr('data-id')
+            $.post("/carrinho",{
+                id:dataid
+            },
+            function(data,status){
+                // ...
+            },'json')
+        })
+    })
+</script>
 
 </html>
 <!-- =============== Fim FOOTER ================== -->

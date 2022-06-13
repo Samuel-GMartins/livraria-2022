@@ -20,9 +20,6 @@ app.use("/js",express.static('js'))
 
 const consulta = await db.selectFilmes()
 const consultaLivro = await db.selectLivros()
-
-const consultaCarrinho = await db.selectCarrinho()
-
 //console.log(consulta[0])
 //console.log(consultaLivro[0])
 
@@ -137,12 +134,12 @@ app.post("/contato",async(req,res)=> {
     res.redirect("/promocoes")
 })
 
-app.get("/carrinho",(req,res) => {
+app.get("/carrinho", async(req,res) => {
+    const consultaCarrinho = await db.selectCarrinho()
     res.render(`carrinho`, {
         titulo:"Conheça nossos livros", 
         promo:"Todos os livros com 10%OFF !",
         livro: consulta,
-        galeria: consultaLivro,
         carrinho: consultaCarrinho
     })
 })
