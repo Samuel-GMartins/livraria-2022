@@ -1,3 +1,5 @@
+// const { render } = require('express/lib/response')
+
 (async () => {
 const express = require('express')
 const app = express()
@@ -142,6 +144,17 @@ app.get("/carrinho", async(req,res) => {
         livro: consulta,
         carrinho: consultaCarrinho
     })
+})
+
+app.post("/carrinho",async(req,res)=> {
+    const info = req.body
+    await db.insertCarrinho({
+        produto: info.produto,
+        quantidade: info.quantidade,
+        valor: info.valor,
+        livros_id: info.livros_id
+    })
+    //res.redirect("/carrinho")
 })
 
 app.listen(port,() => console.log(`Servidor Rodando na porta ${port} com nodemon!`))

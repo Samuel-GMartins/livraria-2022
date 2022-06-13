@@ -69,6 +69,15 @@ async function insertContato(contato){
     return rows
 }
 
+async function insertCarrinho(carrinho){
+    const conectado = await conecta()
+    const values = [carrinho.produto,carrinho.quantidade,carrinho.valor,carrinho.livros_id]
+    const [rows] = 
+    await conectado.query("INSERT INTO carrinho(produto,quantidade,valor,livros_id) VALUES (?,?,?,?)",values)
+    console.log("Insert OK")
+    return rows
+}
+
 async function cadastroContato(usuarios){
     const conectado = await conecta()
     const values = [usuarios.nome,usuarios.email,usuarios.telefone,usuarios.senha,usuarios.conf_senha]
@@ -107,7 +116,8 @@ module.exports = {
     insertLivro,
     updatePromo,
     insertContato,
-    cadastroContato
+    cadastroContato,
+    insertCarrinho
 }
 
 
