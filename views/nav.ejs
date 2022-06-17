@@ -2,8 +2,8 @@
     <a class="navbar-brand" href="/">
         <img src="../imgs/logo.png" width="180" height="" class="d-inline-block align-top">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -30,9 +30,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="/contato">Fale Conosco</a>
             </li>
+            <% if (info.user){ %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Sair</a>
+                </li>
+                <% } else{ %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Entrar</a>
+                    </li>
+                    <% } %>
         </ul>
         <div class="navbar-text">
-            Books Online
+            <span class="d-inline-block mr-3 font-weight-bold text-white">
+                <%=info.user%>
+            </span> Books Online
         </div>
     </div>
 </nav>

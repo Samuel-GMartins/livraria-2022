@@ -1,5 +1,8 @@
 // db = DataBase
 
+const session = require("express-session")
+const mysqlSession = require("express-mysql-session")(session)
+
 async function conecta(){
     const mysql = require("mysql2/promise")
     const conn = await mysql.createConnection({
@@ -13,7 +16,22 @@ async function conecta(){
     return connection
 }
 
-//conecta()
+async function makeSession(app,opt){
+    
+    const dia = 1000 * 60 * 60 * 24;
+    const min15 = 1000 * 60 * 60 / 4;
+    const conectado = await conecta()
+
+    const  sessionStore = new mysqlSession(opt,conectado)
+    app.use(session({
+        secret: "hrgfgrfrty84fwir767",
+        saveUninitialized:false,
+        store:sessionStore,
+        cookie: { maxAge: dia},
+        resave: false 
+    }))
+
+}
 
 async function selectFilmes(){
     const conectado = await conecta()
@@ -133,7 +151,8 @@ module.exports = {
     insertContato,
     cadastroContato,
     insertCarrinho,
-    deleteCarrinho
+    deleteCarrinho,
+    makeSession
     
 }
 

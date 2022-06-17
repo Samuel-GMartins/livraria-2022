@@ -7,6 +7,7 @@ const db = require("./db.js")
 const url = require("url")
 const bodyParser = require("body-parser")
 const session = require("express-session")
+const mysqlSession = require("express-mysql-session")(session)
 const port = 8080
 
 app.set('view engine','ejs')
@@ -15,12 +16,42 @@ const dia = 1000 * 60 * 60 * 24;
 const min15 = 1000 * 60 * 60 / 4;
 
 
-app.use(session({
-    secret: "hrgfgrfrty84fwir767",
-    saveUninitialized:true,
-    cookie: { maxAge: dia},
-    resave: false 
-}))
+const options ={
+    expiration: 10800000,
+    createDatabaseTable: true,
+    schema: {
+        tableName: 'session_tbl',
+        columnNames: {
+            session_id: 'session_id',
+            expires: 'expires',
+            data: 'data'
+        }
+    }  
+}
+
+
+await db.makeSession(app,options,session)
+
+function checkFirst(req, res, next) {
+    if (!req.session.userInfo) {
+      res.redirect('/promocoes');
+    } else {
+      next();
+    }
+  }
+
+function checkAuth(req, res, next) {
+    if (!req.session.userInfo) {
+      res.send('Você não está autorizado para acessar esta página');
+    } else {
+      next();
+    }
+  }
+
+var userInfo=''
+app.locals.info = {
+    user:userInfo
+} 
 
 //Config para as variáveis post
 app.use(bodyParser.urlencoded({extended:false}))
@@ -34,8 +65,6 @@ app.use("/js",express.static('js'))
 
 const consulta = await db.selectFilmes()
 const consultaLivro = await db.selectLivros()
-//console.log(consulta[0])
-//console.log(consultaLivro[0])
 
 app.get("/login",async(req,res) => {
     res.render(`login`, {
@@ -43,15 +72,26 @@ app.get("/login",async(req,res) => {
     })
 })
 
-app.post("/login",async(req,res)=>{
-    let info = req.body
-    let consultaUsers = await db.selectUsers(info.email,info.senha)
-    consultaUsers == '' ? res.send("Usuário Não Encontrado") : res.redirect("/")
-    const s = req.session
-    consultaUsers != '' ? s.nome = info.nome : null
+app.post("/login", async (req,res)=>{
+    const {email,senha} = req.body
+    const logado = await db.selectUsers(email,senha)
+    if(logado != ""){
+    req.session.userInfo = email
+    userInfo = req.session.userInfo
+    req.app.locals.info.user= userInfo
+    res.redirect('/')
+    } else {res.send("<h2>Login ou senha não conferem</h2>")}
 })
 
-app.get("/",(req,res) => {
+app.use('/logout', function (req, res) {
+    req.app.locals.info = {}
+    req.session.destroy()
+    res.clearCookie('connect.sid', { path: '/' });
+    res.redirect("/login") 
+ 
+})
+
+app.get("/",checkFirst,(req,res) => {
     res.render(`index`, {
         titulo:"Conheça nossos livros", 
         promo:"Todos os livros com 10%OFF !",
@@ -161,7 +201,7 @@ app.post("/contato",async(req,res)=> {
     res.redirect("/promocoes")
 })
 
-app.get("/carrinho", async(req,res) => {
+app.get("/carrinho",checkAuth, async(req,res) => {
     const consultaCarrinho = await db.selectCarrinho()
     res.render(`carrinho`, {
         titulo:"Conheça nossos livros", 
