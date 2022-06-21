@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="../imgs/logo.png" width="180" height="" class="d-inline-block align-top">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/cadastro">Cadastrar Produtos</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="/upd-promo">Atualiza Promoções</a>
+            </li>
+
+            <% if (info.user){ %>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Sair</a>
+                </li>
+                <% } else{ %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Entrar</a>
+                    </li>
+                    <% } %>
+        </ul>
+        <div class="navbar-text">
+            <span class="d-inline-block mr-3 font-weight-bold text-white">
+                <%=info.user%>
+            </span> Books Online
+        </div>
+    </div>
+</nav>

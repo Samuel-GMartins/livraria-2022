@@ -53,6 +53,9 @@ app.locals.info = {
     user:userInfo
 } 
 
+app.locals.titulo = "Livraria 2022 - Área Administrativa"
+app.locals.idProd = 5
+
 //Config para as variáveis post
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
@@ -100,6 +103,35 @@ app.get("/",checkFirst,(req,res) => {
     })
 })
 
+// ADMIN  ===============================
+
+app.get("/adm",(req,res) => {
+    res.render(`admin/index-admin`,{
+        galeria: consultaLivro
+    })
+})
+
+
+app.get("/upd-form-produto",async (req,res) => {
+    const produto = await db.selectSingle(req.app.locals.idProd)
+    res.render(`admin/atualiza-produto`,{
+        galeria: consultaLivro,
+        id: req.app.locals.idProd,
+        produtoDaVez: produto
+    })
+})
+
+app.post("/upd-form-produto",(req,res) => {
+    req.app.locals.idProd = req.body.id
+    res.send(`Produto Atualizado com Sucesso`)
+})
+
+app.post("/atualiza_single",async(req,res) => {
+    const b = req.body
+    await db.updateProduto(b.resumo,b.imagem,b.valor,b.titulo,b.id)
+    res.send(`Produto Atualizado com Sucesso`)
+})
+
 app.get("/upd-promo",(req,res) => {
     res.render(`admin/atualiza-promocoes`, {
         titulo:"Conheça nossos livros", 
@@ -119,6 +151,8 @@ app.get("/atualiza-promo",async(req,res) =>{
     await db.updatePromo(qs.promo,qs.id) //localhost:8080/atualiza-promo?promo=1&id=8
      res.send("<h2>Lista de Promoções Atualizadas!</h2> <a href='./'>Voltar</a>")
  })
+
+ // FIM DO ADMIN  ===============================
 
 app.get("/promocoes",async (req,res) => {
     const consultaPromo = await db.selectPromo()

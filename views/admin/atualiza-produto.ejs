@@ -1,0 +1,81 @@
+<%- include("../header.ejs") %>
+<%- include("nav-admin.ejs") %>
+
+<!-- =============== Conteúdo ================== -->
+<div class="container mt-5 pt-5">
+    <header>
+        <h1>Atualiza Produtos</h1>
+    </header>
+
+    <!-- =============== ATUALIZA PRODUTO ================== -->
+    <div class="row">
+        <div class="col-md-8 col-sm-8 col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Editar Produto - <%=id%></h4>
+                    <form id="form-produto" class="form">
+                        <fieldset>
+                            <legend></legend>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <label>Título:</label>
+                                    <input class="form-control" name="titulo" id="" value="<%=produtoDaVez[0].titulo%>">
+                                </li>
+                                <li>
+                                    <label>Resumo:</label>
+                                    <textarea class="form-control" name="resumo" id="" rows="5"><%=produtoDaVez[0].resumo%></textarea>
+                                </li>
+                                <li>
+                                    <label>Imagem:</label>
+                                    <input class="form-control" name="imagem" id="" value="<%=produtoDaVez[0].imagem%>">
+                                </li>
+                                <li>
+                                    <label>Valor:</label>
+                                    <input class="form-control" name="valor" id="" value="<%=produtoDaVez[0].valor%>">
+                                </li>
+
+                                <li>
+                                    <button type="button" class="btn btn-info mt-5 bt-prod">Confirmar</button>
+                                    <button type="button" class="btn btn-primary mt-5 bt-voltar">Voltar</button>
+
+                                </li>
+                            </ul>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-lg-4">
+            <img src="books/<%=produtoDaVez[0].imagem%>" class="w-75" alt="xxx">
+        </div>
+
+        <!-- =============== Fim do Atualiza Produto ================== -->
+
+    </div>
+</div>
+
+<script>
+    $().ready(function () {
+
+        $('.bt-prod').click(function () {
+            $.post('./atualiza_single',{
+                //resumo,imagem,valor,titulo
+                id:'<%=id%>',
+                imagem:$("#form-produto input[name=imagem]").val(),
+                resumo:$("#form-produto textarea[name=resumo]").val(),
+                valor:$("#form-produto input[name=valor]").val(),
+                titulo:$("#form-produto input[name=titulo]").val()
+
+                
+            }, function(data,status){
+                alert(data)
+            },'json')
+        })
+
+        $('.bt-voltar').click(function () {
+            location.href = '/adm'
+        })
+    })
+</script>
+<%- include("../footer.ejs") %>

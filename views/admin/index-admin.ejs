@@ -1,0 +1,33 @@
+<%- include("../header.ejs") %>
+<%- include("nav-admin.ejs") %>
+
+<!-- =============== Conteúdo ================== -->
+<div class="container mt-5 pt-5">
+    <header>
+        <h1>Relatório De Produtos</h1>
+    </header>
+    <%galeria.forEach((item)=> { %>
+    <div class="row mt-1">
+        <div class="border w-50"><%=item.titulo%></div>
+        <button data-id="<%=item.livros_id%>" class="btn btn-info bt-edit">Editar</button>
+    </div>
+    <% }) %>
+</div>
+
+
+<script>
+    $().ready(function () {
+        $('.bt-edit').click(function () {
+
+            let dataid = $(this).attr('data-id')
+
+            $.post("/upd-form-produto", {
+                    id: dataid
+                },
+                function (data, status) {
+                    location.href="/upd-form-produto"
+                })
+        })
+    })
+</script>
+<%- include("../footer.ejs") %>

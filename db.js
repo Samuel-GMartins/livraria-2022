@@ -75,7 +75,12 @@ async function updatePromo(id){
     const values = [promo,id]
     return await conectado.query("UPDATE livros SET promo=? WHERE livros_id=?",values)
 }
-//updatePromo(1,3)
+
+async function updateProduto(resumo,imagem,valor,titulo,id){
+    const conectado = await conecta()
+    const values = [resumo,imagem,valor,titulo,id]
+    return await conectado.query("UPDATE livros SET resumo=?,imagem=?,valor=?,titulo=? WHERE livros_id=?",values)
+}
 
 async function deleteCarrinho(id){
     const conectado = await conecta()
@@ -148,6 +153,7 @@ module.exports = {
     selectUsers,
     insertLivro,
     updatePromo,
+    updateProduto,
     insertContato,
     cadastroContato,
     insertCarrinho,
